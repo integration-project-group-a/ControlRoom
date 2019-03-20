@@ -1,0 +1,11 @@
+C:\Users\Anthe\source\repos\reciver\reciver\bin\Debug\netcoreapp2.2\reciver.deps.json
+C:\Users\Anthe\source\repos\reciver\reciver\bin\Debug\netcoreapp2.2\reciver.runtimeconfig.json
+C:\Users\Anthe\source\repos\reciver\reciver\bin\Debug\netcoreapp2.2\reciver.runtimeconfig.dev.json
+C:\Users\Anthe\source\repos\reciver\reciver\bin\Debug\netcoreapp2.2\reciver.dll
+C:\Users\Anthe\source\repos\reciver\reciver\obj\Debug\netcoreapp2.2\reciver.csprojAssemblyReference.cache
+C:\Users\Anthe\source\repos\reciver\reciver\obj\Debug\netcoreapp2.2\reciver.csproj.CoreCompileInputs.cache
+C:\Users\Anthe\source\repos\reciver\reciver\obj\Debug\netcoreapp2.2\reciver.AssemblyInfoInputs.cache
+C:\Users\Anthe\source\repos\reciver\reciver\obj\Debug\netcoreapp2.2\reciver.AssemblyInfo.cs
+C:\Users\Anthe\source\repos\reciver\reciver\bin\Debug\netcoreapp2.2\reciver.pdb
+C:\Users\Anthe\source\repos\reciver\reciver\obj\Debug\netcoreapp2.2\reciver.dll
+C:\Users\Anthe\source\repos\reciver\reciver\obj\Debug\netcoreapp2.2\reciver.pdb

@@ -1,0 +1,11 @@
+C:\Users\Anthe\source\repos\sender\sender\bin\Debug\netcoreapp2.2\sender.deps.json
+C:\Users\Anthe\source\repos\sender\sender\bin\Debug\netcoreapp2.2\sender.runtimeconfig.json
+C:\Users\Anthe\source\repos\sender\sender\bin\Debug\netcoreapp2.2\sender.runtimeconfig.dev.json
+C:\Users\Anthe\source\repos\sender\sender\bin\Debug\netcoreapp2.2\sender.dll
+C:\Users\Anthe\source\repos\sender\sender\obj\Debug\netcoreapp2.2\sender.csprojAssemblyReference.cache
+C:\Users\Anthe\source\repos\sender\sender\obj\Debug\netcoreapp2.2\sender.csproj.CoreCompileInputs.cache
+C:\Users\Anthe\source\repos\sender\sender\obj\Debug\netcoreapp2.2\sender.AssemblyInfoInputs.cache
+C:\Users\Anthe\source\repos\sender\sender\obj\Debug\netcoreapp2.2\sender.AssemblyInfo.cs
+C:\Users\Anthe\source\repos\sender\sender\bin\Debug\netcoreapp2.2\sender.pdb
+C:\Users\Anthe\source\repos\sender\sender\obj\Debug\netcoreapp2.2\sender.dll
+C:\Users\Anthe\source\repos\sender\sender\obj\Debug\netcoreapp2.2\sender.pdb
