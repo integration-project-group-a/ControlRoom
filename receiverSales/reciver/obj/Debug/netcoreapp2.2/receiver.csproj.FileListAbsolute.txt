@@ -1,0 +1,22 @@
+C:\Users\Anthe\source\repos\receiver\reciver\bin\Debug\netcoreapp2.2\receiver.deps.json
+C:\Users\Anthe\source\repos\receiver\reciver\bin\Debug\netcoreapp2.2\receiver.runtimeconfig.json
+C:\Users\Anthe\source\repos\receiver\reciver\bin\Debug\netcoreapp2.2\receiver.runtimeconfig.dev.json
+C:\Users\Anthe\source\repos\receiver\reciver\bin\Debug\netcoreapp2.2\receiver.dll
+C:\Users\Anthe\source\repos\receiver\reciver\bin\Debug\netcoreapp2.2\receiver.pdb
+C:\Users\Anthe\source\repos\receiver\reciver\obj\Debug\netcoreapp2.2\receiver.csprojAssemblyReference.cache
+C:\Users\Anthe\source\repos\receiver\reciver\obj\Debug\netcoreapp2.2\receiver.csproj.CoreCompileInputs.cache
+C:\Users\Anthe\source\repos\receiver\reciver\obj\Debug\netcoreapp2.2\receiver.AssemblyInfoInputs.cache
+C:\Users\Anthe\source\repos\receiver\reciver\obj\Debug\netcoreapp2.2\receiver.AssemblyInfo.cs
+C:\Users\Anthe\source\repos\receiver\reciver\obj\Debug\netcoreapp2.2\receiver.dll
+C:\Users\Anthe\source\repos\receiver\reciver\obj\Debug\netcoreapp2.2\receiver.pdb
+C:\Users\Anthe Boets\Documents\GitHub\ControlRoom\receiver\reciver\bin\Debug\netcoreapp2.2\receiver.deps.json
+C:\Users\Anthe Boets\Documents\GitHub\ControlRoom\receiver\reciver\bin\Debug\netcoreapp2.2\receiver.runtimeconfig.json
+C:\Users\Anthe Boets\Documents\GitHub\ControlRoom\receiver\reciver\bin\Debug\netcoreapp2.2\receiver.runtimeconfig.dev.json
+C:\Users\Anthe Boets\Documents\GitHub\ControlRoom\receiver\reciver\bin\Debug\netcoreapp2.2\receiver.dll
+C:\Users\Anthe Boets\Documents\GitHub\ControlRoom\receiver\reciver\bin\Debug\netcoreapp2.2\receiver.pdb
+C:\Users\Anthe Boets\Documents\GitHub\ControlRoom\receiver\reciver\obj\Debug\netcoreapp2.2\receiver.csprojAssemblyReference.cache
+C:\Users\Anthe Boets\Documents\GitHub\ControlRoom\receiver\reciver\obj\Debug\netcoreapp2.2\receiver.csproj.CoreCompileInputs.cache
+C:\Users\Anthe Boets\Documents\GitHub\ControlRoom\receiver\reciver\obj\Debug\netcoreapp2.2\receiver.AssemblyInfoInputs.cache
+C:\Users\Anthe Boets\Documents\GitHub\ControlRoom\receiver\reciver\obj\Debug\netcoreapp2.2\receiver.AssemblyInfo.cs
+C:\Users\Anthe Boets\Documents\GitHub\ControlRoom\receiver\reciver\obj\Debug\netcoreapp2.2\receiver.dll
+C:\Users\Anthe Boets\Documents\GitHub\ControlRoom\receiver\reciver\obj\Debug\netcoreapp2.2\receiver.pdb
