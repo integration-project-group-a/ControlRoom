@@ -12,7 +12,7 @@ class EmitLog
         {
             channel.ExchangeDeclare(exchange: "logs", type: "fanout");
 
-            String xmlStr = "<VISITOR> <UUID>0001</UUID> <SYSTEMID>1</SYSTEMID> <NAAM> <VOORNAAM>Anthe</VOORNAAM> <ACHTERNAAM>Boets</ACHTERNAAM> </NAAM> <GEBOORTEDATUM>1999-04-30T00:00:00+00:00 </GEBOORTEDATUM> <BTW-NUMMER>BE 0123.321.123</BTW-NUMMER> <GSM>0482455642</GSM> <EVENT> <SESSIE>SESSIE1</SESSIE> <SESSIE>SESSIE2</SESSIE> </EVENT> <CREATED> <TIMESTAMP>2019-03-13T18:52:30+00:00</TIMESTAMP> <VERSION>1</VERSION> </CREATED> <ISACTIVE>True</ISACTIVE> <SENDER>Front-end</SENDER> <TYPE-GEBRUIKER>Visitor</TYPE-GEBRUIKER> <GDPR>True</GDPR> <BANNED>False</BANNED> </VISITOR>";
+            String xmlStr = "<Message> <header> <!-- type of message --> <MessageType>Visitor</MessageType> <!--What your Message does --> <description>Creation of a visitor</description> <!--Who sent it--> <!--(fronted, crm, facturatie, kassa, monitor, planning, uuid) --> <sender>front-end</sender> <!-- kassa, crm, front-end --> </header> <datastructure> <!-- required fields = UUID name + email & hashing. --> <UUID>100</UUID> <!-- id of the user --> <name> <firstname>Anthe</firstname> <lastname>Boets</lastname> </name> <!-- kassa , front-end --> <email>anthe.boets@student.ehb.be</email> <GDPR>true</GDPR> <timestamp>1999-04-30T00:00:00+00:00</timestamp> <version>1</version> <isActive>true</isActive> <banned>false</banned> <!-- Not required fields --> <geboortedatum>1999-04-30T00:00:00+00:00</geboortedatum> <btw-nummer/> <gsm-nummer/> <extraField/> </datastructure> </Message>";
 
             var messagetest = XDocument.Parse(xmlStr);
 

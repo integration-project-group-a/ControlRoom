@@ -4254,11 +4254,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Anthe\\source\\repos\\sender\\sender\\sender.csproj",
+      "projectUniqueName": "C:\\Users\\Anthe\\Documents\\GitHub\\ControlRoom\\sender\\sender\\sender.csproj",
       "projectName": "sender",
-      "projectPath": "C:\\Users\\Anthe\\source\\repos\\sender\\sender\\sender.csproj",
+      "projectPath": "C:\\Users\\Anthe\\Documents\\GitHub\\ControlRoom\\sender\\sender\\sender.csproj",
       "packagesPath": "C:\\Users\\Anthe\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Anthe\\source\\repos\\sender\\sender\\obj\\",
+      "outputPath": "C:\\Users\\Anthe\\Documents\\GitHub\\ControlRoom\\sender\\sender\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
