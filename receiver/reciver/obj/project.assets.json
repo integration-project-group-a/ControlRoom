@@ -4536,11 +4536,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Anthe\\source\\repos\\receiver\\reciver\\receiver.csproj",
+      "projectUniqueName": "C:\\Users\\Anthe\\Documents\\GitHub\\ControlRoom\\receiver\\reciver\\receiver.csproj",
       "projectName": "receiver",
-      "projectPath": "C:\\Users\\Anthe\\source\\repos\\receiver\\reciver\\receiver.csproj",
+      "projectPath": "C:\\Users\\Anthe\\Documents\\GitHub\\ControlRoom\\receiver\\reciver\\receiver.csproj",
       "packagesPath": "C:\\Users\\Anthe\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Anthe\\source\\repos\\receiver\\reciver\\obj\\",
+      "outputPath": "C:\\Users\\Anthe\\Documents\\GitHub\\ControlRoom\\receiver\\reciver\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

@@ -4,6 +4,7 @@ using RabbitMQ.Client.Events;
 using System.Text;
 using System.Xml;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System.IO;
 using System.Net;
 
@@ -34,27 +35,162 @@ class ReceiveLogs
                 doc.LoadXml(message);
                 
                 string jsonText = JsonConvert.SerializeXmlNode(doc,Newtonsoft.Json.Formatting.None,true);
+
+                JObject jObject = JObject.Parse(jsonText);
+
+                HttpWebRequest httpWebRequest;
+                HttpWebResponse httpWebResponse;
+                string elasticId;
+                switch ((string)jObject[""])
+                {
+                    case "Creation of a visitor":
+                        //request naar elasticsearch
+                        httpWebRequest = (HttpWebRequest)WebRequest.Create("http://10.3.56.26:9200/test/anthe"); //url
+                        httpWebRequest.ContentType = "application/json"; //ContentType
+                        httpWebRequest.Method = "POST"; //Methode
+
+                        //body
+                        using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+                        {
+                            streamWriter.Write(jsonText);
+                            streamWriter.Flush();
+                            streamWriter.Close();
+                        }
+
+                        httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse(); //sending request
+                        using (var streamReader = new StreamReader(httpWebResponse.GetResponseStream()))
+                        {
+                            String result = streamReader.ReadToEnd(); //get result Json string From respons
+                            Console.WriteLine("result");
+                            Console.WriteLine(result);
+                        }
+                        break;
+                    case "Update of a visitor":
+
+                        //request naar elasticsearch
+                        httpWebRequest = (HttpWebRequest)WebRequest.Create("http://10.3.56.26:9200/test/anthe/_search"); //url
+                        httpWebRequest.ContentType = "application/json"; //ContentType
+                        httpWebRequest.Method = "GET"; //Methode
+
+                        //body
+                        using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+                        {
+                            streamWriter.Write("\"query\": {\r\n    \"terms\": {\r\n      \"datastructure.UUID\": [\""+jObject["datastructure.UUID"] +"\"] \r\n    }\r\n  }");
+                            streamWriter.Flush();
+                            streamWriter.Close();
+                        }
+
+                        httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse(); //sending request
+                        using (var streamReader = new StreamReader(httpWebResponse.GetResponseStream()))
+                        {
+                            String result = streamReader.ReadToEnd(); //get result Json string From respons
+                            Console.WriteLine("result");
+                            JObject jObjectResponse = JObject.Parse(result);
+                            Console.WriteLine(result);
+                            Console.WriteLine("elasticId: "+ (string)jObjectResponse["_id"]);
+                            elasticId = (string)jObjectResponse["_id"];
+                        }
+
+
+
+
+                        //request naar elasticsearch
+                        httpWebRequest = (HttpWebRequest)WebRequest.Create("http://10.3.56.26:9200/test/anthe/" + elasticId); //url
+                        httpWebRequest.ContentType = "application/json"; //ContentType
+                        httpWebRequest.Method = "PUT"; //Methode
+
+                        //body
+                        using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+                        {
+                            streamWriter.Write(jsonText);
+                            streamWriter.Flush();
+                            streamWriter.Close();
+                        }
+
+                        httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse(); //sending request
+                        using (var streamReader = new StreamReader(httpWebResponse.GetResponseStream()))
+                        {
+                            String result = streamReader.ReadToEnd(); //get result Json string From respons
+                            Console.WriteLine("result");
+                            Console.WriteLine(result);
+                        }
+                        break;
+                    case "Deletion of a visitor":
+                        //request naar elasticsearch
+                        httpWebRequest = (HttpWebRequest)WebRequest.Create("http://10.3.56.26:9200/test/anthe/_search"); //url
+                        httpWebRequest.ContentType = "application/json"; //ContentType
+                        httpWebRequest.Method = "GET"; //Methode
+
+                        //body
+                        using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+                        {
+                            streamWriter.Write("\"query\": {\r\n    \"terms\": {\r\n      \"datastructure.UUID\": [\"" + jObject["datastructure.UUID"] + "\"] \r\n    }\r\n  }");
+                            streamWriter.Flush();
+                            streamWriter.Close();
+                        }
+
+                        httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse(); //sending request
+                        using (var streamReader = new StreamReader(httpWebResponse.GetResponseStream()))
+                        {
+                            String result = streamReader.ReadToEnd(); //get result Json string From respons
+                            Console.WriteLine("result");
+                            JObject jObjectResponse = JObject.Parse(result);
+                            Console.WriteLine(result);
+                            Console.WriteLine("elasticId: " + (string)jObjectResponse["_id"]);
+                            elasticId = (string)jObjectResponse["_id"];
+                        }
+
+                        //request naar elasticsearch
+                        httpWebRequest = (HttpWebRequest)WebRequest.Create("http://10.3.56.26:9200/test/_search"); //url
+                        httpWebRequest.ContentType = "application/json"; //ContentType
+                        httpWebRequest.Method = "GET"; //Methode
+
+                        //body
+                        using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+                        {
+                            streamWriter.Write("\"query\": {\r\n    \"terms\": {\r\n      \"datastructure.UUID\": [\"" + jObject["datastructure.UUID"] + "\"] \r\n    }\r\n  }");
+                            streamWriter.Flush();
+                            streamWriter.Close();
+                        }
+                        
+                        httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse(); //sending request
+                        using (var streamReader = new StreamReader(httpWebResponse.GetResponseStream()))
+                        {
+                            String result = streamReader.ReadToEnd(); //get result Json string From respons
+                            Console.WriteLine("result");
+                            JObject jObjectResponse = JObject.Parse(result);
+                            Console.WriteLine(result);
+                            Console.WriteLine("elasticId: " + (string)jObjectResponse["_id"]);
+                            elasticId = (string)jObjectResponse["_id"];
+                        }
+
+
+                        //request naar elasticsearch
+                        httpWebRequest = (HttpWebRequest)WebRequest.Create("http://10.3.56.26:9200/test/anthe" + elasticId); //url
+                        httpWebRequest.ContentType = "application/json"; //ContentType
+                        httpWebRequest.Method = "DELETE"; //Methode
+
+                        //body
+                        /*
+                        using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+                        {
+                            streamWriter.Write(jsonText);
+                            streamWriter.Flush();
+                            streamWriter.Close();
+                        }
+                        */
+
+                        httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse(); //sending request
+                        using (var streamReader = new StreamReader(httpWebResponse.GetResponseStream()))
+                        {
+                            String result = streamReader.ReadToEnd(); //get result Json string From respons
+                            Console.WriteLine("result");
+                            Console.WriteLine(result);
+                        }
+                        break;
+                }
+
                 
-                //request naar elasticsearch
-                var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://10.3.56.26:9200/test/anthe"); //url
-                httpWebRequest.ContentType = "application/json"; //ContentType
-                httpWebRequest.Method = "POST"; //Methode
-
-                //body
-                using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
-                {
-                    streamWriter.Write(jsonText);
-                    streamWriter.Flush();
-                    streamWriter.Close();
-                }
-
-                var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse(); //sending request
-                using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
-                {
-                    String result = streamReader.ReadToEnd(); //get result Json string From respons
-                    Console.WriteLine("result");
-                    Console.WriteLine(result);
-                }
 
             };
             channel.BasicConsume(queue: queueName,autoAck: true,consumer: consumer);
