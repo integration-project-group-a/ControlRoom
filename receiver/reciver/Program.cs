@@ -41,7 +41,7 @@ class ReceiveLogs
                 HttpWebRequest httpWebRequest;
                 HttpWebResponse httpWebResponse;
                 string elasticId;
-                switch ((string)jObject[""])
+                switch ((string)jObject["description"])
                 {
                     case "Creation of a visitor":
                         //request naar elasticsearch
