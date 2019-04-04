@@ -6,7 +6,9 @@ class EmitLog
 {
     public static void Main(string[] args)
     {
-        var factory = new ConnectionFactory() { HostName = "localhost" };
+        var factory = new ConnectionFactory() { HostName = "10.3.56.27" };
+        factory.UserName = "manager";
+        factory.Password = "ehb";
         using (var connection = factory.CreateConnection())
         using (var channel = connection.CreateModel())
         {
@@ -19,6 +21,7 @@ class EmitLog
             channel.BasicPublish(exchange: "logs",routingKey: "",basicProperties: null,body: body);
 
             Console.ReadKey();
+
 
             channel.ExchangeDeclare(exchange: "logs", type: "fanout");
 

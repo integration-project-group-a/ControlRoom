@@ -13,6 +13,8 @@ class ReceiveLogs
     public static void Main()
     {
         var factory = new ConnectionFactory() { HostName = "10.3.56.27" };
+        factory.UserName = "manager";
+        factory.Password = "ehb";
         using (var connection = factory.CreateConnection())
         using (var channel = connection.CreateModel())
         {
