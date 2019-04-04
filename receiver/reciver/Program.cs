@@ -41,7 +41,7 @@ class ReceiveLogs
                 HttpWebRequest httpWebRequest;
                 HttpWebResponse httpWebResponse;
                 string elasticId;
-                switch ((string)jObject["description"])
+                switch ((string)jObject["header"]["description"])
                 {
                     case "Creation of a visitor":
                         //request naar elasticsearch
@@ -66,34 +66,8 @@ class ReceiveLogs
                         }
                         break;
                     case "Update of a visitor":
-
-                        //request naar elasticsearch
-                        httpWebRequest = (HttpWebRequest)WebRequest.Create("http://10.3.56.26:9200/test/anthe/_search"); //url
-                        httpWebRequest.ContentType = "application/json"; //ContentType
-                        httpWebRequest.Method = "GET"; //Methode
-
-                        //body
-                        using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
-                        {
-                            streamWriter.Write("\"query\": {\r\n    \"terms\": {\r\n      \"datastructure.UUID\": [\""+jObject["datastructure.UUID"] +"\"] \r\n    }\r\n  }");
-                            streamWriter.Flush();
-                            streamWriter.Close();
-                        }
-
-                        httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse(); //sending request
-                        using (var streamReader = new StreamReader(httpWebResponse.GetResponseStream()))
-                        {
-                            String result = streamReader.ReadToEnd(); //get result Json string From respons
-                            Console.WriteLine("result");
-                            JObject jObjectResponse = JObject.Parse(result);
-                            Console.WriteLine(result);
-                            Console.WriteLine("elasticId: "+ (string)jObjectResponse["_id"]);
-                            elasticId = (string)jObjectResponse["_id"];
-                        }
-
-
-
-
+                        elasticId = GetId();
+                        
                         //request naar elasticsearch
                         httpWebRequest = (HttpWebRequest)WebRequest.Create("http://10.3.56.26:9200/test/anthe/" + elasticId); //url
                         httpWebRequest.ContentType = "application/json"; //ContentType
@@ -116,69 +90,12 @@ class ReceiveLogs
                         }
                         break;
                     case "Deletion of a visitor":
+
+                        elasticId = GetId();
                         //request naar elasticsearch
-                        httpWebRequest = (HttpWebRequest)WebRequest.Create("http://10.3.56.26:9200/test/anthe/_search"); //url
-                        httpWebRequest.ContentType = "application/json"; //ContentType
-                        httpWebRequest.Method = "GET"; //Methode
-
-                        //body
-                        using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
-                        {
-                            streamWriter.Write("\"query\": {\r\n    \"terms\": {\r\n      \"datastructure.UUID\": [\"" + jObject["datastructure.UUID"] + "\"] \r\n    }\r\n  }");
-                            streamWriter.Flush();
-                            streamWriter.Close();
-                        }
-
-                        httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse(); //sending request
-                        using (var streamReader = new StreamReader(httpWebResponse.GetResponseStream()))
-                        {
-                            String result = streamReader.ReadToEnd(); //get result Json string From respons
-                            Console.WriteLine("result");
-                            JObject jObjectResponse = JObject.Parse(result);
-                            Console.WriteLine(result);
-                            Console.WriteLine("elasticId: " + (string)jObjectResponse["_id"]);
-                            elasticId = (string)jObjectResponse["_id"];
-                        }
-
-                        //request naar elasticsearch
-                        httpWebRequest = (HttpWebRequest)WebRequest.Create("http://10.3.56.26:9200/test/_search"); //url
-                        httpWebRequest.ContentType = "application/json"; //ContentType
-                        httpWebRequest.Method = "GET"; //Methode
-
-                        //body
-                        using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
-                        {
-                            streamWriter.Write("\"query\": {\r\n    \"terms\": {\r\n      \"datastructure.UUID\": [\"" + jObject["datastructure.UUID"] + "\"] \r\n    }\r\n  }");
-                            streamWriter.Flush();
-                            streamWriter.Close();
-                        }
-                        
-                        httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse(); //sending request
-                        using (var streamReader = new StreamReader(httpWebResponse.GetResponseStream()))
-                        {
-                            String result = streamReader.ReadToEnd(); //get result Json string From respons
-                            Console.WriteLine("result");
-                            JObject jObjectResponse = JObject.Parse(result);
-                            Console.WriteLine(result);
-                            Console.WriteLine("elasticId: " + (string)jObjectResponse["_id"]);
-                            elasticId = (string)jObjectResponse["_id"];
-                        }
-
-
-                        //request naar elasticsearch
-                        httpWebRequest = (HttpWebRequest)WebRequest.Create("http://10.3.56.26:9200/test/anthe" + elasticId); //url
+                        httpWebRequest = (HttpWebRequest)WebRequest.Create("http://10.3.56.26:9200/test/anthe/" + elasticId); //url
                         httpWebRequest.ContentType = "application/json"; //ContentType
                         httpWebRequest.Method = "DELETE"; //Methode
-
-                        //body
-                        /*
-                        using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
-                        {
-                            streamWriter.Write(jsonText);
-                            streamWriter.Flush();
-                            streamWriter.Close();
-                        }
-                        */
 
                         httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse(); //sending request
                         using (var streamReader = new StreamReader(httpWebResponse.GetResponseStream()))
@@ -197,5 +114,35 @@ class ReceiveLogs
             Console.ReadLine();
         }
        
+    }
+    public static string GetId()
+    {
+        HttpWebRequest httpWebRequest;
+        HttpWebResponse httpWebResponse;
+        string elasticId;
+        //request naar elasticsearch
+        httpWebRequest = (HttpWebRequest)WebRequest.Create("http://10.3.56.26:9200/test/anthe/_search"); //url
+        httpWebRequest.ContentType = "application/json"; //ContentType
+        httpWebRequest.Method = "POST"; //Methode
+
+        //body
+        using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+        {
+            streamWriter.Write("{\"query\": {\"terms\": {\"datastructure.UUID\": [\"" + (string)jObject["datastructure"]["UUID"] + "\"]}}}");
+            streamWriter.Flush();
+            streamWriter.Close();
+        }
+
+        httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse(); //sending request
+        using (var streamReader = new StreamReader(httpWebResponse.GetResponseStream()))
+        {
+            String result = streamReader.ReadToEnd(); //get result Json string From respons
+            Console.WriteLine("result");
+            JObject jObjectResponse = JObject.Parse(result);
+            Console.WriteLine(result);
+            Console.WriteLine("elasticId: " + (string)jObjectResponse["hits"]["hits"][0]["_id"]);
+            elasticId = (string)jObjectResponse["hits"]["hits"][0]["_id"];
+        }
+        return "elasticId";
     }
 }
