@@ -12,7 +12,7 @@ class ReceiveLogs
 {
     public static void Main()
     {
-        var factory = new ConnectionFactory() { HostName = "localhost" };
+        var factory = new ConnectionFactory() { HostName = "10.3.56.27" };
         using (var connection = factory.CreateConnection())
         using (var channel = connection.CreateModel())
         {
@@ -66,7 +66,7 @@ class ReceiveLogs
                         }
                         break;
                     case "Update of a visitor":
-                        elasticId = GetId();
+                        elasticId = GetId(jObject);
                         
                         //request naar elasticsearch
                         httpWebRequest = (HttpWebRequest)WebRequest.Create("http://10.3.56.26:9200/test/anthe/" + elasticId); //url
@@ -91,7 +91,7 @@ class ReceiveLogs
                         break;
                     case "Deletion of a visitor":
 
-                        elasticId = GetId();
+                        elasticId = GetId(jObject);
                         //request naar elasticsearch
                         httpWebRequest = (HttpWebRequest)WebRequest.Create("http://10.3.56.26:9200/test/anthe/" + elasticId); //url
                         httpWebRequest.ContentType = "application/json"; //ContentType
@@ -115,8 +115,9 @@ class ReceiveLogs
         }
        
     }
-    public static string GetId()
+    public static string GetId(JObject jObject)
     {
+
         HttpWebRequest httpWebRequest;
         HttpWebResponse httpWebResponse;
         string elasticId;
